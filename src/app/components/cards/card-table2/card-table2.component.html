@@ -1,0 +1,69 @@
+<!-- CSS only -->
+<!-- Latest compiled and minified CSS -->
+
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+  [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
+>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+        
+        <h3
+          class="font-semibold text-lg"
+          [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-white'"
+        >
+          Card Tables
+
+          <button class="btn btn-primary mr-1" style=" position: absolute;
+          top: 8px;
+          right: 16px;
+          font-size: 18px;;" (click)="addfile()">+ Add</button>
+        
+        </h3>
+        
+       
+      </div>
+    </div>
+  </div>
+  <div >
+    <!-- Projects table -->
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> File Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="algo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Algorithm </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.algo}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef > </mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <button (click)="DownloadFile(row.id,row.name)" ><i class="fas fa-download"></i></button>
+         
+        </mat-cell>
+      </ng-container>
+      
+      
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+   
+  </div>
+</div>
+<ngx-spinner  [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+  <p class="loading">Loading Awesomeness...</p>
+</ngx-spinner>

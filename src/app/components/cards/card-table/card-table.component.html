@@ -1,0 +1,71 @@
+<div
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded"
+  [ngClass]="color === 'light' ? 'bg-white' : 'bg-red-900 text-white'"
+>
+  <div class="rounded-t mb-0 px-4 py-3 border-0">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+        <h3
+          class="font-semibold text-lg"
+          [ngClass]="color === 'light' ? 'text-blueGray-700' : 'text-white'"
+        >
+          Card Tables
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div >
+    <!-- Projects table -->
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> PhoneNumber </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.phoneNumber}} </mat-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.firstName}}</mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> LastName </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.email}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="eanbled">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Account Status </mat-header-cell>
+        <mat-cell *matCellDef="let row" > <i  *ngIf="row.eanbled === false " class="fa fa-ban" style="font-size:20px;color:red"></i>
+          <i  *ngIf="row.eanbled === true " class="fa fa-check" style="font-size:20px;color:green"></i>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef > actions </mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+          <button (click)="Desactiver(row)" *ngIf="row.eanbled === true ">desactiver </button>
+          <button (click)="Activer(row)" *ngIf="row.eanbled === false ">activer </button>
+        </mat-cell>
+      </ng-container>
+      
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
