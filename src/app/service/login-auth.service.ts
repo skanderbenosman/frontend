@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginAuthService {
   private subject = new Subject<any>();
-  baseURL: string = "http://localhost:8080/";
+  baseURL: string = "https://pfe-skander.herokuapp.com/";
 
   isLoggedIn(){
     if (localStorage.getItem('currentUser')){

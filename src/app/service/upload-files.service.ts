@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UploadFilesService {
   public loginuser: any = {};
-  baseURL: string = "http://localhost:8080/";
+  baseURL: string = "https://pfe-skander.herokuapp.com/";
   constructor(private http: HttpClient) { }
   upload(file: File, aa: any) {
     const formData: FormData = new FormData();
