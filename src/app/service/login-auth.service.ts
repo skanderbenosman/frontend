@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginAuthService {
   private subject = new Subject<any>();
+  baseURL: string = "http://localhost:8080/";
+
   isLoggedIn(){
     if (localStorage.getItem('currentUser')){
       this.subject.next({status: true});
@@ -25,13 +27,13 @@ export class LoginAuthService {
   loginUser(user: any): Observable<any>{
     console.log("skander"+user)
     const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
-    return this.http.post('http://localhost:8080/login', user , {headers});
+    return this.http.post(this.baseURL +'login', user , {headers});
 
   }
   getAllUsers(token: any): Observable<any>{
     console.log("aa="+token);
     const headers = new HttpHeaders({Authorization: 'Bearer ' + token});
-    return this.http.get('http://localhost:8080/users', {headers});
+    return this.http.get(this.baseURL + 'users', {headers});
 
   }
 }

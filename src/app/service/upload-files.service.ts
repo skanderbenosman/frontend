@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UploadFilesService {
   public loginuser: any = {};
-  private baseUrl = 'http://localhost:8080';
+  baseURL: string = "http://localhost:8080/";
   constructor(private http: HttpClient) { }
   upload(file: File, aa: any) {
     const formData: FormData = new FormData();
@@ -15,13 +15,13 @@ export class UploadFilesService {
     formData.append('param1', aa);
     this.loginuser = JSON.parse(localStorage.getItem('currentUser'));
     const headers = new HttpHeaders({Authorization: 'Bearer ' + this.loginuser.token});
-    return this.http.post('http://localhost:8080/upload', formData , {headers});
+    return this.http.post(this.baseURL + 'upload', formData , {headers});
 
   }
   getFiles(): Observable<any> {
       this.loginuser = JSON.parse(localStorage.getItem('currentUser'));
       const headers = new HttpHeaders({Authorization: 'Bearer ' + this.loginuser.token});
-      return this.http.get('http://localhost:8080/getuserfile', {headers});
+      return this.http.get(this.baseURL + 'getuserfile', {headers});
 
 
   }
@@ -32,7 +32,7 @@ export class UploadFilesService {
     const formData: FormData = new FormData();
     formData.append('id', id);
     
-    return this.http.post('http://localhost:8080/download',formData, {headers});
+    return this.http.post(this.baseURL + 'download',formData, {headers});
 
 
 }
@@ -49,7 +49,7 @@ DeleteFile(id: any): Observable<any> {
   const formData: FormData = new FormData();
   formData.append('id', id);
   
-  return this.http.post('http://localhost:8080/delete',formData, {headers});
+  return this.http.post(this.baseURL + 'delete',formData, {headers});
 
 
 }
