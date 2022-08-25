@@ -1,4 +1,4 @@
-import { HttpEventType, HttpProgressEvent } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType, HttpProgressEvent } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -97,6 +97,18 @@ export class AddfileComponent implements OnInit {
           });
         }
       
+      },(error:HttpErrorResponse )=>{
+        this.spinner.hide();
+        this.dialogRef.close();
+        Swal.fire({
+          title: 'file save failed',
+          icon:'error',
+          timer:2000,
+          showConfirmButton:false,
+          width: '500px',
+          
+        
+        });
       }
     )
    

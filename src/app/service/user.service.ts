@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  baseURL: string = "https://pfe-skander.herokuapp.com/";
+  baseURL: string = "http://localhost:8080/";
   constructor(private http: HttpClient) { 
     this.http = http;
   }
