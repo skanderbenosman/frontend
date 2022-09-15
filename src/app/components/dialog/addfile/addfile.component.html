@@ -16,7 +16,7 @@
                     <select formControlName="algo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.algo.errors }">
                         <option value="">Select algorithm</option>
                         <option value="AES/DES">AES/DES</option>
-                        <option value="AES/BLOWFISH">AES/BLOWFISH</option>
+                        <option value="3DES/BLOWFISH">3DES/BLOWFISH</option>
                     </select>
                     <div *ngIf="submitted && f.algo.errors" class="invalid-feedback">
                         <div *ngIf="f.algo.errors.required">algorithm is required</div>
@@ -43,12 +43,9 @@
         </form>
    
       
-
+        <ngx-spinner  [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+            <p class="loading">Uploading ...</p>
+          </ngx-spinner>
 </mat-dialog-content>
-<ngx-spinner  [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
-    <p class="loading">Loading Awesomeness...</p>
-  </ngx-spinner>
- <!-- <mat-dialog-actions>
-    <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
-</mat-dialog-actions>-->
+
+

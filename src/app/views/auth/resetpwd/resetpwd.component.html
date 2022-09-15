@@ -8,21 +8,14 @@
           
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
             <div class="text-blueGray-400 text-center mb-3 font-bold">
-              <small> sign in with credentials</small>
+              <small> Rest password</small>
             </div>
       
-            <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="ResetForm" (ngSubmit)="onSubmit()">
               
                   
                   
-              <div class="relative w-full mb-3">
-                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Email</label>
-                  <input type="search" formControlName="email"    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback" >
-                      <div *ngIf="f.email.errors.required">Email is required</div>
-                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                  </div>
-              </div>
+              
               
                   <div class="relative w-full mb-3">
                       <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">Password  </label>
@@ -55,26 +48,42 @@
                           <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
                       </div>
                   </div>
-                
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">confirm password</label>
+                    <div class="input-group">
+                      <!-- Change input type to be dynamic -->
+                      <input
+                        [type]="fieldTextType2 ? 'text' : 'password'"
+                        class="form-control"
+                        formControlName="confirmPassword"
+                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                      />
+                       <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i
+                          class="fa"
+                          [ngClass]="{
+                            'fa-eye-slash': !fieldTextType2,
+                            'fa-eye': fieldTextType2
+                          }"
+                          (click)="toggleFieldTextType2()"
+                        ></i>
+                        </span>
+                     </div>
+                    </div>
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                      <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                      <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                  </div>
+                </div>
               <div class="text-center">
-                  <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">Sign In</button>
+                  <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">Rest password</button>
                   
               </div>
           </form>
           </div>
         </div>
-        <div class="flex flex-wrap mt-6 relative">
-          <div class="w-1/2">
-            <a [routerLink]="['/auth/resetpwd']" class="text-blueGray-200">
-              <small>Forgot password?</small>
-            </a>
-          </div>
-          <div class="w-1/2 text-right">
-            <a [routerLink]="['/auth/register']" class="text-blueGray-200">
-              <small>Create new account</small>
-            </a>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>

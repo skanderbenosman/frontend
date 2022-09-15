@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpErrorResponse } from "@angular/common/http";
 
+
 @Component({
   selector: 'app-card-table2',
   templateUrl: './card-table2.component.html',
@@ -28,7 +29,8 @@ export class CardTable2Component implements OnInit {
   private _color = "light";
   public loginuser: any = {};
   public files: any [];
-  displayedColumns = [ 'name', 'algo','actions'];
+  
+  displayedColumns = [ 'name', 'algo','actions','actions2'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,6 +60,8 @@ applyFilter(filterValue: string) {
 }
 DownloadFile(id: any,fname:any){
   console.log(" aaaa123456789");
+
+
   this.spinner.show();
   this.fileservice.getDownloadFile(id).subscribe((response) => {
     if (response){
@@ -70,11 +74,13 @@ DownloadFile(id: any,fname:any){
           let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
           const url = window.URL.createObjectURL(blob);
           fileSaver.saveAs(blob, fname);
+          
           this.spinner.hide();
           this.fileservice.DeleteFile(id).subscribe(response => {})
 
         }, (error: HttpErrorResponse) => {console.log(error.message)
-        this.spinner.hide();
+         
+       this.spinner.hide();
         this.fileservice.DeleteFile(id).subscribe(response => {})
                     ; Swal.fire({
                       title: 'Error downloading the file',
@@ -114,5 +120,38 @@ addfile(){
   );
   
 }
+Delete(id:any){
+  this.fileservice.DeleteFile2(id).subscribe((response) => {
+    if(response.message = "delete the file successfully"){
+      Swal.fire({
+        title: 'File deleted',
+        icon:'success',
+        timer:2000,
+        showConfirmButton:false,
+        width: '500px',
+        
+      
+      });
+      this.fileservice.getFiles().subscribe(user => {
+        console.log("mohsen");
+        this.dataSource = new MatTableDataSource(user) ;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+  
+     
+      })
+  }else{
+    Swal.fire({
+      title: 'Delete file error',
+      icon:'error',
+      timer:2000,
+      showConfirmButton:false,
+      width: '500px',
+      
+    
+    });
+  }
 
+})
+}
 }

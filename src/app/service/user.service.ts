@@ -71,5 +71,23 @@ export class UserService {
     return this.http.post(this.baseURL +'userUpdatedState/',formData ,{headers});
 
   }
+  SendMail(formData: FormData): Observable<any>{
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
+    //const formData: FormData = new FormData();
+    
+    
+    
+    return this.http.post(this.baseURL +'sendemail/',formData ,{headers});
+
+  }
+  Resetpassword(formData: FormData): Observable<any>{
+    const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
+    //const formData: FormData = new FormData();
+    
+    
+    
+    return this.http.post(this.baseURL +'resetpass/',formData ,{headers});
+
+  }
 
 }

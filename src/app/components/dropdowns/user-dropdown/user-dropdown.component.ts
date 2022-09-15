@@ -11,6 +11,7 @@ export class UserDropdownComponent implements AfterViewInit {
   dropdownPopoverShow = false;
   public user: any = {};
   public loginuser: any = {};
+  url:any;
   firstname:any;
   lastname: any;
   @ViewChild("btnDropdownRef", { static: false }) btnDropdownRef: ElementRef;
@@ -54,5 +55,6 @@ export class UserDropdownComponent implements AfterViewInit {
     console.log(this.loginuser);
     console.log(this.user.firstName);
   this.firstname=this.user.firstName;
+  this.url="http://localhost:8080/"+this.user.id+"/"+this.user.imageName;
 this.lastname=this.user.lastName;}
 }

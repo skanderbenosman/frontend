@@ -17,10 +17,11 @@ export class AddfileComponent implements OnInit {
   form: FormGroup;
   registerForm: FormGroup;
   submitted = false;
-  constructor(public formBuilder:FormBuilder,public imageUploadService: UploadFilesService,private router: Router,private spinner: NgxSpinnerService,private dialogRef: MatDialogRef<AddfileComponent>) {
+  msg:any;
+  constructor(public formBuilder:FormBuilder,public imageUploadService: UploadFilesService,private router: Router,private spinner2: NgxSpinnerService,private dialogRef: MatDialogRef<AddfileComponent>) {
     
    }
-
+   
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
      
@@ -61,7 +62,7 @@ export class AddfileComponent implements OnInit {
     
 
     
-      this.spinner.show();
+      this.spinner2.show();
     this.imageUploadService.upload(
       
       this.file,
@@ -71,7 +72,7 @@ export class AddfileComponent implements OnInit {
       console.log(response.message)
       if (response.message=='Uploaded the file successfully '){
         
-        this.spinner.hide();
+        this.spinner2.hide();
         console.log(response);
         this.dialogRef.close();
         Swal.fire({
@@ -84,7 +85,7 @@ export class AddfileComponent implements OnInit {
         
         });
         }else{
-          this.spinner.hide();
+          this.spinner2.hide();
           this.dialogRef.close();
           Swal.fire({
             title: 'file save failed',
@@ -98,7 +99,7 @@ export class AddfileComponent implements OnInit {
         }
       
       },(error:HttpErrorResponse )=>{
-        this.spinner.hide();
+        this.spinner2.hide();
         this.dialogRef.close();
         Swal.fire({
           title: 'file save failed',
@@ -115,5 +116,11 @@ export class AddfileComponent implements OnInit {
   }
   Close(){
     this.dialogRef.close();
+  }
+  show(){
+    this.spinner2.show();
+  }
+  hide(){
+ this.spinner2.hide();
   }
 }

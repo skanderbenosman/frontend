@@ -38,7 +38,7 @@ export class UploadFilesService {
 }
 downloadFile(id:any,fname:any): any {
  
-  const headers2 = new HttpHeaders({Authorization: 'Basic dGVzdDp0ZXN0'});
+ 
 
   return this.http.get("http://192.168.1.104:8080/"+id+"/"+fname, {responseType: 'blob'});
 }
@@ -53,4 +53,16 @@ DeleteFile(id: any): Observable<any> {
 
 
 }
+DeleteFile2(id: any): Observable<any> {
+    
+  this.loginuser = JSON.parse(localStorage.getItem('currentUser'));
+  const headers = new HttpHeaders({Authorization: 'Bearer ' + this.loginuser.token});
+  const formData: FormData = new FormData();
+  formData.append('id', id);
+  
+  return this.http.post(this.baseURL + 'delete2',formData, {headers});
+
+
+}
+
 }

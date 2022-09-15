@@ -4,6 +4,7 @@ import { LoginAuthService } from "src/app/service/login-auth.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from "@angular/common/http";
+import * as fileSaver from 'file-saver';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.user).subscribe((response) => {
 
       if (response.token){
-        
+       
+          
         localStorage.setItem('currentUser', JSON.stringify(response));
         if (response.user.role === 'ADMIN'){
           this.router.navigate(['admin/dashboard']);

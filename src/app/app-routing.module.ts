@@ -14,6 +14,8 @@ import { TablesComponent } from "./views/admin/tables/tables.component";
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
 import { RegisterComponent } from "./views/auth/register/register.component";
+import { ResetpwdComponent } from "./views/auth/resetpwd/resetpwd.component";
+import { SendemailComponent } from "./views/auth/sendemail/sendemail.component";
 
 // no layouts views
 
@@ -44,6 +46,8 @@ const routes: Routes = [
     children: [
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
+      { path: "resetpwd", component: SendemailComponent },
+      { path: "resetpwd2/:token", component: ResetpwdComponent },
       { path: "", redirectTo: "login", pathMatch: "full" },
     ],
   },{path: "user",component: UserComponent,canActivate: [AuthGuard], children: [

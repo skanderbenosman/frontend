@@ -55,7 +55,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { UserHeaderComponent } from './components/headers/user-header/user-header.component';
 import { UserSidebarComponent } from './components/user-sidebar/user-sidebar.component';
-import { DialComponent } from './components/dial/dial.component';
+import { ResetpwdComponent } from './views/auth/resetpwd/resetpwd.component';
+import { SendemailComponent } from './views/auth/sendemail/sendemail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,8 @@ import { DialComponent } from './components/dial/dial.component';
     AddfileComponent,
     UserHeaderComponent,
     UserSidebarComponent,
-    DialComponent
+    ResetpwdComponent,
+    SendemailComponent
   ],
   imports: [
     BrowserModule,

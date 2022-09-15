@@ -34,6 +34,8 @@ export class LoginAuthService {
     console.log("aa="+token);
     const headers = new HttpHeaders({Authorization: 'Bearer ' + token});
     return this.http.get(this.baseURL + 'users', {headers});
+  
 
   }
+  
 }
