@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UploadFilesService {
   public loginuser: any = {};
-  baseURL: string = "http://localhost:8080/";
+  baseURL: string = "https://pfe-java.herokuapp.com/";
   constructor(private http: HttpClient) { }
   upload(file: File, aa: any) {
     const formData: FormData = new FormData();
@@ -38,9 +38,9 @@ export class UploadFilesService {
 }
 downloadFile(id:any,fname:any): any {
  
- 
+  const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
 
-  return this.http.get("http://192.168.1.104:8080/"+id+"/"+fname, {responseType: 'blob'});
+  return this.http.get("http://20.171.109.93:8080/"+id+"/"+fname, {responseType: 'blob'});
 }
 DeleteFile(id: any): Observable<any> {
     

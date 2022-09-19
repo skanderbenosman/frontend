@@ -95,7 +95,19 @@ DownloadFile(id: any,fname:any){
       }
       
     }
-  });
+  }, (error: HttpErrorResponse) => {console.log(error.message)
+         
+    this.spinner.hide();
+    
+                 Swal.fire({
+                   title: 'Error downloading the file',
+                   icon:'error',
+                   timer:2000,
+                   showConfirmButton:false,
+                   width: '500px',
+                   
+                 
+                 });})
  
               
 
