@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./auth.guard";
+import { HeaderStatsComponent } from "./components/headers/header-stats/header-stats.component";
 
 // layouts
 import { AdminComponent } from "./layouts/admin/admin.component";
@@ -53,7 +54,7 @@ const routes: Routes = [
   },{path: "user",component: UserComponent,canActivate: [AuthGuard], children: [
     { path: "tables", component: Tables2Component },
     
-  ], },
+  ], },{path: "aaa",component: HeaderStatsComponent},
  
 ];
 

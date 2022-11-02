@@ -57,6 +57,8 @@ import { UserHeaderComponent } from './components/headers/user-header/user-heade
 import { UserSidebarComponent } from './components/user-sidebar/user-sidebar.component';
 import { ResetpwdComponent } from './views/auth/resetpwd/resetpwd.component';
 import { SendemailComponent } from './views/auth/sendemail/sendemail.component';
+import {NgxCaptchaModule} from  '@binssoft/ngx-captcha';
+import { NgxLoadingXModule } from 'ngx-loading-x';
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,7 +117,9 @@ import { SendemailComponent } from './views/auth/sendemail/sendemail.component';
     MatInputModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxCaptchaModule,
+    NgxLoadingXModule 
   ],
   providers: [AuthGuard,
     LoginAuthService],

@@ -10,6 +10,8 @@ export class HeaderStatsComponent implements OnInit {
   loginuser: any;
    NewUser: number ;
    NewUser2: number ;
+   ActiveUser: number ;
+   BanedUser: number ;
    statArrow:any;
    statPercentColor:any;
    statPercent:number;
@@ -18,8 +20,10 @@ export class HeaderStatsComponent implements OnInit {
     this.authService.isLoggedIn();
     this.loginuser = JSON.parse(localStorage.getItem('currentUser'));
   }
-
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit(): void {
     this.userservice.getNewUsers(this.loginuser.token).subscribe(user => {
       this.NewUser=user;
       console.log(this.NewUser)
@@ -46,6 +50,16 @@ export class HeaderStatsComponent implements OnInit {
      
            
       });
+      this.userservice.getNbUsersactive(this.loginuser.token).subscribe(user => {
+        this.ActiveUser=user;
+       console.log("active=="+user)
+             
+        });
+        this.userservice.getNbUsersBaned(this.loginuser.token).subscribe(user => {
+          this.BanedUser=user;
+         
+               
+          });
 
     
    

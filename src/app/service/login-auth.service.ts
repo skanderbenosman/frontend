@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginAuthService {
   private subject = new Subject<any>();
   baseURL: string = "https://pfe-java.herokuapp.com/";
-
+  //baseURL: string = "http://localhost:8080/";
   isLoggedIn(){
     if (localStorage.getItem('currentUser')){
       this.subject.next({status: true});

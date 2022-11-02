@@ -5,14 +5,27 @@ import { UserService } from "src/app/service/user.service";
 import { MustMatch } from './must-match.validator';
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
-
+import {NgxCaptchaService} from  '@binssoft/ngx-captcha'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  captchaStatus:any = null;
+  captchaConfig:any = {
+     length:6,
+     type:2,
+     cssClass:'custom',
+     back: {
+       stroke:"#2F9688",
+       solid:"#f2efd2"
+     } ,
+     font:{
+      color:"#000000",
+      size:"35px"
+     }
+   };
   registerForm: FormGroup;
     submitted = false;
     fieldTextType: boolean;
@@ -20,11 +33,12 @@ export class RegisterComponent implements OnInit {
     selectedFiles: FileList;
     file:File;
     allowedExtensions = ['png', 'jpg'];
-  constructor(private userService: UserService , private authService: LoginAuthService ,private formBuilder:FormBuilder, private router: Router) {
+  constructor(private userService: UserService , private authService: LoginAuthService ,private formBuilder:FormBuilder, private router: Router,private captchaService:NgxCaptchaService) {
     this.authService.isLoggedIn();
   }
 
   ngOnInit(): void {
+    
     this.registerForm = this.formBuilder.group({
      
       firstName: ['', Validators.required],
@@ -34,7 +48,8 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
       file: ['', Validators.required],
-      acceptTerms: [false, Validators.requiredTrue]
+      acceptTerms: [false, Validators.requiredTrue],
+      
   }, {
       validator: MustMatch('password', 'confirmPassword')
   });
@@ -61,6 +76,7 @@ export class RegisterComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+    
       this.submitted = true;
 
       // stop here if form is invalid

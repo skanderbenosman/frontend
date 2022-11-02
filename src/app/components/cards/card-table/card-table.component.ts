@@ -4,6 +4,8 @@ import { MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import { UserService } from "src/app/service/user.service";
+import { HeaderStatsComponent } from "../../headers/header-stats/header-stats.component";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-card-table",
   templateUrl: "./card-table.component.html",
@@ -24,7 +26,7 @@ export class CardTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private authService: LoginAuthService,private userservice :UserService ) {
+  constructor(private authService: LoginAuthService,private userservice :UserService,private router:Router ) {
     this.authService.isLoggedIn();
     this.loginuser = JSON.parse(localStorage.getItem('currentUser'));
     
@@ -60,6 +62,7 @@ export class CardTableComponent implements OnInit {
           this.dataSource = new MatTableDataSource(user) ;
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          window.location.reload();
     
        
         });  console.log(response.message);
@@ -79,7 +82,7 @@ export class CardTableComponent implements OnInit {
           this.dataSource = new MatTableDataSource(user) ;
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-    
+          window.location.reload();
        
         });
       

@@ -3,6 +3,11 @@ import { Router } from "@angular/router";
 import { createPopper } from "@popperjs/core";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { UserprofileComponent } from "../../dialog/userprofile/userprofile.component";
+import { UserService } from "src/app/service/user.service";
+import { UploadFilesService } from "src/app/service/upload-files.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { areAllEquivalent } from "@angular/compiler/src/output/output_ast";
+import * as fileSaver from 'file-saver';
 @Component({
   selector: "app-user-dropdown",
   templateUrl: "./user-dropdown.component.html",
@@ -14,6 +19,7 @@ export class UserDropdownComponent implements AfterViewInit {
   url:any;
   firstname:any;
   lastname: any;
+  previewSignsrc:any;
   @ViewChild("btnDropdownRef", { static: false }) btnDropdownRef: ElementRef;
   @ViewChild("popoverDropdownRef", { static: false })
   popoverDropdownRef: ElementRef;
@@ -34,7 +40,7 @@ export class UserDropdownComponent implements AfterViewInit {
       this.dropdownPopoverShow = true;
     }
   }
-  constructor( private router: Router,private dialog: MatDialog) {
+  constructor( private router: Router,private dialog: MatDialog,private fileservice :UploadFilesService,private sanitizer: DomSanitizer) {
    
   }
   logout() {
@@ -55,6 +61,7 @@ export class UserDropdownComponent implements AfterViewInit {
     console.log(this.loginuser);
     console.log(this.user.firstName);
   this.firstname=this.user.firstName;
-  this.url="http://localhost:8080/"+this.user.id+"/"+this.user.imageName;
+  
+  this.url="https://pfe-java.herokuapp.com/image/getaaa/"+this.user.id;
 this.lastname=this.user.lastName;}
 }

@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   baseURL: string = "https://pfe-java.herokuapp.com/";
+  //baseURL: string = "http://localhost:8080/";
+
   constructor(private http: HttpClient) { 
     this.http = http;
   }
@@ -89,5 +91,24 @@ export class UserService {
     return this.http.post(this.baseURL +'resetpass/',formData ,{headers});
 
   }
+  getStatUsers(token: any): Observable<any>{
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + token});
+    return this.http.get(this.baseURL +'Userstats', {headers});
 
+  }
+  getStatUsers2(token: any): Observable<any>{
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + token});
+    return this.http.get(this.baseURL +'Userstats2', {headers});
+
+  }
+  getNbUsersactive(token: any): Observable<any>{
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + token});
+    return this.http.get(this.baseURL +'nbusersactive', {headers});
+
+  }
+  getNbUsersBaned(token: any): Observable<any>{
+    const headers = new HttpHeaders({Authorization: 'Bearer ' + token});
+    return this.http.get(this.baseURL +'nbusersbaned', {headers});
+
+  }
 }

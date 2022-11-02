@@ -29,7 +29,8 @@ export class CardTable2Component implements OnInit {
   private _color = "light";
   public loginuser: any = {};
   public files: any [];
-  
+  public load = false;
+  Download: boolean;
   displayedColumns = [ 'name', 'algo','actions','actions2'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -59,10 +60,10 @@ applyFilter(filterValue: string) {
   this.dataSource.filter = filterValue;
 }
 DownloadFile(id: any,fname:any){
-  console.log(" aaaa123456789");
 
-
-  this.spinner.show();
+ 
+this.spinner.show();
+this.load = true;
   this.fileservice.getDownloadFile(id).subscribe((response) => {
     if (response){
       console.log(response);
@@ -76,12 +77,14 @@ DownloadFile(id: any,fname:any){
           fileSaver.saveAs(blob, fname);
           
           this.spinner.hide();
-          this.fileservice.DeleteFile(id).subscribe(response => {})
+          this.load = false;
+         // this.fileservice.DeleteFile(id).subscribe(response => {})
 
         }, (error: HttpErrorResponse) => {console.log(error.message)
          
        this.spinner.hide();
-        this.fileservice.DeleteFile(id).subscribe(response => {})
+       this.load = false;
+       // this.fileservice.DeleteFile(id).subscribe(response => {})
                     ; Swal.fire({
                       title: 'Error downloading the file',
                       icon:'error',
@@ -98,7 +101,7 @@ DownloadFile(id: any,fname:any){
   }, (error: HttpErrorResponse) => {console.log(error.message)
          
     this.spinner.hide();
-    
+    this.load = false;
                  Swal.fire({
                    title: 'Error downloading the file',
                    icon:'error',
@@ -164,6 +167,17 @@ Delete(id:any){
     });
   }
 
+},(error:HttpErrorResponse )=>{
+  
+  Swal.fire({
+    title: 'Delete file error',
+    icon:'error',
+    timer:2000,
+    showConfirmButton:false,
+    width: '500px',
+    
+  
+  });
 })
 }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpRequest, HttpEvent, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpRequest, HttpEvent, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class UploadFilesService {
   public loginuser: any = {};
   baseURL: string = "https://pfe-java.herokuapp.com/";
+  //baseURL: string = "http://localhost:8080/";
+
   constructor(private http: HttpClient) { }
   upload(file: File, aa: any) {
     const formData: FormData = new FormData();
@@ -37,10 +39,14 @@ export class UploadFilesService {
 
 }
 downloadFile(id:any,fname:any): any {
+  
+  
  
-  const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'});
 
-  return this.http.get("http://20.171.109.93:8080/"+id+"/"+fname, {responseType: 'blob'});
+ // const headers = new HttpHeaders({'Access-Control-Allow-Origin':'*'});
+console.log("skander"+btoa('skander:000000'))
+return this.http.get("https://vm3.westeurope.cloudapp.azure.com/"+id+"/"+fname, {  responseType: 'blob',});
+ 
 }
 DeleteFile(id: any): Observable<any> {
     

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from "@angular/common/http";
 import * as fileSaver from 'file-saver';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   fieldTextType: boolean;
   LoginForm: FormGroup;
     submitted = false;
-  constructor( private router: Router, private authService: LoginAuthService,private formBuilder: FormBuilder) {
+  constructor( private router: Router, private authService: LoginAuthService,private formBuilder: FormBuilder,private spinner: NgxSpinnerService) {
     this.authService.isLoggedIn();
   }
 
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   get f() { return this.LoginForm.controls; }
   onSubmit() {
     this.submitted = true;
-
+this.spinner.show();
     
     if (this.LoginForm.invalid) {
         return;
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.user).subscribe((response) => {
 
       if (response.token){
-       
+        this.spinner.hide();
           
         localStorage.setItem('currentUser', JSON.stringify(response));
         if (response.user.role === 'ADMIN'){
@@ -58,6 +59,7 @@ export class LoginComponent implements OnInit {
       }
     },
     (err:HttpErrorResponse)=>{ 
+      this.spinner.hide();
     Swal.fire({
       title: err.error.message,
       icon:'error',

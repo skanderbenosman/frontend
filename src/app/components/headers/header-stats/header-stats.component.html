@@ -18,36 +18,31 @@
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <app-card-stats2
-            statSubtitle="Number of user"
+            statSubtitle="Number of All user"
             statTitle={{NumberUser}}
            
-            statIconName="fas fa-chart-pie"
-           
+            statIconName="fa fa-users"
+            statIconColor="bg-purple-500"
           ></app-card-stats2>
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <app-card-stats
-            statSubtitle="SALES"
-            statTitle="924"
-            statArrow="down"
-            statPercent="1.10"
-            statPercentColor="text-orange-500"
-            statDescripiron="Since yesterday"
-            statIconName="fas fa-users"
-            statIconColor="bg-pink-500"
-          ></app-card-stats>
+          <app-card-stats2
+            statSubtitle="Number of active user"
+            statTitle={{ActiveUser}}
+           
+            statIconName="fa fa-users"
+            statIconColor="bg-emerald-500"
+          ></app-card-stats2>
+         
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <app-card-stats
-            statSubtitle="PERFORMANCE"
-            statTitle="49,65%"
-            statArrow="up"
-            statPercent="12"
-            statPercentColor="text-emerald-500"
-            statDescripiron="Since last month"
-            statIconName="fas fa-percent"
-            statIconColor="bg-emerald-500"
-          ></app-card-stats>
+          <app-card-stats2
+          statSubtitle="Number of baned user"
+          statTitle={{BanedUser}}
+         
+          statIconName="fa fa-users"
+            statIconColor="bg-red-500"
+          ></app-card-stats2>
         </div>
       </div>
     </div>
