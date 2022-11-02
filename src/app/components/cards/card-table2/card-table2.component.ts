@@ -78,13 +78,13 @@ this.load = true;
           
           this.spinner.hide();
           this.load = false;
-         // this.fileservice.DeleteFile(id).subscribe(response => {})
+         this.fileservice.DeleteFile(id).subscribe(response => {})
 
         }, (error: HttpErrorResponse) => {console.log(error.message)
          
        this.spinner.hide();
        this.load = false;
-       // this.fileservice.DeleteFile(id).subscribe(response => {})
+       this.fileservice.DeleteFile(id).subscribe(response => {})
                     ; Swal.fire({
                       title: 'Error downloading the file',
                       icon:'error',
