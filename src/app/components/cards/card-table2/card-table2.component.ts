@@ -11,6 +11,7 @@ import { AddfileComponent } from "../../dialog/addfile/addfile.component";
 import Swal from "sweetalert2";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpErrorResponse } from "@angular/common/http";
+import { DeletefComponent } from "../../dialog/deletef/deletef.component";
 
 
 @Component({
@@ -135,8 +136,28 @@ addfile(){
   );
   
 }
-Delete(id:any){
-  this.fileservice.DeleteFile2(id).subscribe((response) => {
+Delete(id:any,fname:any){
+  const dialogConfig = new MatDialogConfig();
+
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.data = {
+    id: id,
+    name: fname
+};
+  const dialogRef =this.dialog.open(DeletefComponent,{ width: '450px',data: {name : fname, id : id}});
+  dialogRef.afterClosed().subscribe(result=>
+    
+    this.fileservice.getFiles().subscribe(user => {
+      console.log("mohsen");
+      this.dataSource = new MatTableDataSource(user) ;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+   
+    })
+  );
+ /* this.fileservice.DeleteFile2(id).subscribe((response) => {
     if(response.message = "delete the file successfully"){
       Swal.fire({
         title: 'File deleted',
@@ -178,6 +199,6 @@ Delete(id:any){
     
   
   });
-})
+})*/
 }
 }

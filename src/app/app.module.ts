@@ -59,6 +59,7 @@ import { ResetpwdComponent } from './views/auth/resetpwd/resetpwd.component';
 import { SendemailComponent } from './views/auth/sendemail/sendemail.component';
 import {NgxCaptchaModule} from  '@binssoft/ngx-captcha';
 import { NgxLoadingXModule } from 'ngx-loading-x';
+import { DeletefComponent } from './components/dialog/deletef/deletef.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +100,8 @@ import { NgxLoadingXModule } from 'ngx-loading-x';
     UserHeaderComponent,
     UserSidebarComponent,
     ResetpwdComponent,
-    SendemailComponent
+    SendemailComponent,
+    DeletefComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+<div class="text-center">
+<h1 mat-dialog-title>Confirmation</h1>
+
+    <p>supprimer {{data.name}}</p>
+
+
+   
+    <button class="btn btn-primary mr-1" mat-button (click)="delete(data.id)">oui</button>
+    <button class="btn btn-primary mr-1" mat-button (click)="annuler()" cdkFocusInitial>non</button>
+</div>
+
