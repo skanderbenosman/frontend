@@ -61,6 +61,9 @@ import {NgxCaptchaModule} from  '@binssoft/ngx-captcha';
 import { NgxLoadingXModule } from 'ngx-loading-x';
 import { DeletefComponent } from './components/dialog/deletef/deletef.component';
 import { MonitoringComponent } from './views/admin/monitoring/monitoring.component';
+import { Monitoring3Component } from './views/admin/monitoring3/monitoring3.component';
+import { Monitoring2Component } from './views/admin/monitoring2/monitoring2.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,7 +106,10 @@ import { MonitoringComponent } from './views/admin/monitoring/monitoring.compone
     ResetpwdComponent,
     SendemailComponent,
     DeletefComponent,
-    MonitoringComponent
+    MonitoringComponent,
+    Monitoring3Component,
+    Monitoring2Component,
+
   ],
   imports: [
     BrowserModule,

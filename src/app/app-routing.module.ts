@@ -11,6 +11,8 @@ import { UserComponent } from "./layouts/user/user.component";
 // admin views
 import { DashboardComponent } from "./views/admin/dashboard/dashboard.component";
 import { MonitoringComponent } from "./views/admin/monitoring/monitoring.component";
+import { Monitoring2Component } from "./views/admin/monitoring2/monitoring2.component";
+import { Monitoring3Component } from "./views/admin/monitoring3/monitoring3.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
 
 // auth views
@@ -36,7 +38,8 @@ const routes: Routes = [
     children: [
       { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
       { path: "Monitoring", component: MonitoringComponent, canActivate: [AuthGuard] },
-      
+      { path: "Monitoring2", component: Monitoring2Component, canActivate: [AuthGuard] },
+      { path: "Monitoring3", component: Monitoring3Component, canActivate: [AuthGuard] },
       { path: "tables", component: TablesComponent },
      
      { path: "", redirectTo: "dashboard", pathMatch: "full" },

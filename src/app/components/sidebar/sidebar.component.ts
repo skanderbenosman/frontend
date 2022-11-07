@@ -12,4 +12,5 @@ export class SidebarComponent implements OnInit {
   toggleCollapseShow(classes) {
     this.collapseShow = classes;
   }
+  
 }

@@ -35,11 +35,12 @@ export class LoginComponent implements OnInit {
   get f() { return this.LoginForm.controls; }
   onSubmit() {
     this.submitted = true;
-this.spinner.show();
+
     
     if (this.LoginForm.invalid) {
         return;
     }
+    this.spinner.show();
     this.user.password=this.LoginForm.value.password;
     this.user.email=this.LoginForm.value.email;
     // display form values on success
