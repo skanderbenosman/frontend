@@ -15,7 +15,7 @@
                     <label >Algorithm</label>
                     <select formControlName="algo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.algo.errors }">
                         <option value="">Select algorithm</option>
-                        <option value="AES/DES">AES/RC2</option>
+                        <option value="AES/RC2">AES/RC2</option>
                         <option value="3DES/BLOWFISH">3DES/BLOWFISH</option>
                     </select>
                     <div *ngIf="submitted && f.algo.errors" class="invalid-feedback">
