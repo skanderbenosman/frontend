@@ -33,7 +33,7 @@ export class UserprofileComponent implements OnInit {
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.email]],
-      phonenumber: [12345645, [Validators.required, Validators.minLength(8)]],
+      phonenumber: [this.user.phoneNumber, [Validators.required, Validators.minLength(8)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
       
