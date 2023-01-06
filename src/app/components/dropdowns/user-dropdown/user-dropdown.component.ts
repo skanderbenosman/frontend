@@ -62,6 +62,6 @@ export class UserDropdownComponent implements AfterViewInit {
     console.log(this.user.firstName);
   this.firstname=this.user.firstName;
   
-  this.url="https://pfe-java.herokuapp.com/image/getaaa/"+this.user.id;
+  this.url="http://localhost:8080/image/getaaa/"+this.user.id;
 this.lastname=this.user.lastName;}
 }

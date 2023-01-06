@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class UploadFilesService {
   public loginuser: any = {};
-  baseURL: string = "https://pfe-java.herokuapp.com/";
-  //baseURL: string = "http://localhost:8080/";
+  //baseURL: string = "https://pfe-java.herokuapp.com/";
+  baseURL: string = "http://localhost:8080/";
 
   constructor(private http: HttpClient) { }
   upload(file: File, aa: any) {
